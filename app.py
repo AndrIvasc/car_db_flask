@@ -21,11 +21,13 @@ with app.app_context():
 def home():
     search_text = request.args.get("search_field")
     if search_text:
-        filtered_row = CarProject.query.filter(CarProject.manufacturer.ilike(f"{search_text}"))
-        return render_template("main_index.html", projects=filtered_row)
+        filtered_rows = CarProject.query.filter(CarProject.manufacturer.ilike(f"%{search_text}%"))
+        total_price = sum(project.price for project in filtered_rows)
+        return render_template("main_index.html", projects=filtered_rows, total_price=total_price)
     else:
         all_projects = CarProject.query.all()
-        return render_template("main_index.html", projects=all_projects)
+        total_price = sum(project.price for project in all_projects)
+        return render_template("main_index.html", projects=all_projects, total_price=total_price)
 
 
 @app.route("/car/<int:row_id>")
