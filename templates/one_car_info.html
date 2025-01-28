@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h4>Car Details</h4>
+    <p><strong>Manufacturer:</strong> {{ project.manufacturer }}</p>
+    <p><strong>Model:</strong> {{ project.model }}</p>
+    <p><strong>ID:</strong> {{ project.id }}</p>
+    <p><strong>Engine Size (L):</strong> {{ project.engine_size }}</p>
+    <p><strong>Power Output (kW):</strong> {{ project.power_output }}</p>
+    <p><strong>Horsepower (HP):</strong> {{ project.horse_power }}</p>
+    <p><strong>Price (€):</strong> {{ project.price }}</p>
+    <p><strong>Price with VAT (€):</strong> {{ project.kaina_su_pvm }}</p>
+    <p><strong>Created At:</strong> {{ project.created_at }}</p>
+{% endblock %}

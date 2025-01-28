@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h4>Car Projects Table</h4>
+<form action="" method="get">
+    <p><input type="text" name="search_field" placeholder="Search..."></p>
+    <p><input type="submit" value="Filter"></p>
+</form>
+<p><a href="/car/new">Enter new car</a></p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Manufacturer</th>
+        <th>Model</th>
+        <th>Engine Size (L)</th>
+        <th>Power Output (kW)</th>
+        <th>Horsepower (HP)</th>
+        <th>Price (€)</th>
+        <th>Price with VAT (€)</th>
+        <th>Actions</th>
+    </tr>
+    {% for project in projects %}
+    <tr>
+        <td>{{ project.id }}</td>
+        <td>{{ project.manufacturer }}</td>
+        <td>{{ project.model }}</td>
+        <td>{{ project.engine_size }}</td>
+        <td>{{ project.power_output }}</td>
+        <td>{{ project.horse_power }}</td>
+        <td>{{ project.price }}</td>
+        <td>{{ project.kaina_su_pvm }}</td>
+        <td>
+            <a href="/car/{{ project.id }}">View</a>
+            <a href="/car/edit/{{ project.id }}">Edit</a>
+            <form action="/car/delete/{{ project.id }}" method="post" style="display:inline;">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
